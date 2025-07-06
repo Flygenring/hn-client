@@ -21,6 +21,7 @@ function App() {
 	return (
 		<>
 			<h1>Latest top stories from Hacker News</h1>
+			{!stories.length && <div className="loader">Loading stories...</div>}
 			<div className="card">
 				{stories.join(", ")}
 			</div>
