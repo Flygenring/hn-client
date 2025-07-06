@@ -29,8 +29,17 @@
 	margin: .25rem 1.5rem;
 }
 
+/* Set up the meta data prettily */
 .stories .card .meta {
 	display: flex;
 	justify-content: space-between;
 	padding: .5rem .75rem;
+}
+.stories .card .meta .score:after {
+	content: "👍";
+	margin: 0 .625rem 0 .125rem;
+}
+.stories .card .meta .username:before {
+	content: "👤";
+	margin: 0 .125rem 0 .625rem;
 }
