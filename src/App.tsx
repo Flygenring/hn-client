@@ -24,13 +24,15 @@ function App() {
 		<>
 			<h1>Latest top stories from Hacker News</h1>
 
-			<div className="stories">
-				{!stories.length && <div className="loader">Loading stories...</div>}
-				{stories.length && <StoryList stories={stories} expandStory={expandStory} />}
-			</div>
+			<div className="story-view">
+				<div className="stories">
+					{!stories.length && <div className="loader">Loading stories...</div>}
+					{stories.length && <StoryList stories={stories} expandStory={expandStory} />}
+				</div>
 
-			<div className="story-details">
-				{story.id && <StoryDetails story={story}/>}
+				<div className="story-details">
+					{story.id && <StoryDetails story={story}/>}
+				</div>
 			</div>
 		</>
 	)

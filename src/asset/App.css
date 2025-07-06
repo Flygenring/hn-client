@@ -4,103 +4,88 @@
 	padding: 2rem;
 }
 
+.story-view {
+	display: flex;
+	flex-wrap: nowrap;
+	border: 1px solid #339933;
+	max-height: 50vw;
+}
+
 .stories {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	justify-items: start;
+	flex-grow: 0;
+	flex-basis: 35%;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
+
+.story-details {
+	flex-grow: 0;
+	flex-basis: 65%;
+	padding: .75rem 1rem;
+}
+
 
 .stories .card {
-	display: inline-block;
-	width: 32%;
-	margin: 0 0 1.5em 0;
+	height: 200px;
+	max-width: 100%;
+	padding: 0 0 .75rem 0;
+	border: 0 solid #339933;
+	border-bottom-width: 1px;
+	border-radius: 0;
+	background: #1a1a1a;
+	cursor: pointer;
+}
+.stories .card:hover {
+	border-color: #66FF33;
+	box-shadow: inset -.25rem -.5rem 1rem -.75rem #66FF33;
 }
 
-.stories .card .content {
-	display: inline-block;
-	width: 100%;
-	height: 200px;
-	margin: -1px;
-	border: 1px solid #339933;
-	border-radius: 4px;
-	background: #1a1a1a;
-}
-.stories .card .content h2 {
+.stories .card h2 {
 	font-size: 1.2rem;
 	margin: 0 .25rem;
 }
-.stories .card .content .url,
-.stories .card .content .link {
+.stories .card .url {
 	margin: .25rem 1.5rem;
 }
-.stories .card .content .meta .author .karma,
-.stories .card .content .meta .author .created,
-.stories .card .content .text,
-.stories .card .content .link {
-	display: none;
-}
+
 
 /* Set up the meta data prettily */
-.stories .card .content .meta {
+.meta {
 	display: flex;
 	justify-content: space-between;
 	padding: .5rem .75rem;
 }
-.stories .card .content .meta :after {
-	margin: 0 .625rem 0 .125rem;
+.meta .score {
+	flex-grow: 1;
 }
-.stories .card .content .meta .score:after {
-	content: "👍";
-	display: inline-block;
-	transform: scaleX(-1);
+.meta .has-body {
+	padding-left: .75rem;
 }
-.stories .card .content .meta .author {
+.story-details .meta .author {
 	flex-grow: 1;
 	display: flex;
 	justify-content: end;
 }
-.stories .card .content .meta .author :before {
+.meta :after {
+	margin: 0 .625rem 0 .125rem;
+}
+.meta :before {
 	margin: 0 .125rem 0 .625rem;
 }
-.stories .card .content .meta .author .username:before {
+.meta .score:after {
+	content: "👍";
+	display: inline-block;
+	transform: scaleX(-1);
+}
+.meta .username:before {
 	content: "👤"
 }
-.stories .card .content .meta .author .karma:before {
+.story-details .meta .author .karma:before {
 	content: "❤️"
 }
-.stories .card .content .meta .author .created:before {
+.story-details .meta .author .created:before {
 	content: "📅"
-}
-
-
-/* Handle all of the hovering expansion and info switching */
-.stories .card:hover {
-	position: relative;
-}
-.stories .card:hover .content {
-	position: absolute;
-	z-index: 1;
-	top: -5%;
-	left: -10%;
-	width: 120%;
-	min-height: 250px;
-	border: 1px solid #66FF33;
-	box-shadow: 0 5px 15px #66FF33; /* Offset-X, Offset-Y, Blur, Spread, Color */
-}
-.stories .card:hover .content .author .karma,
-.stories .card:hover .content .author .created,
-.stories .card:hover .content .text,
-.stories .card:hover .content .link {
-	display: inline-block;
-}
-.stories .card:hover .content .url {
-	display: none;
-}
-.stories .card:hover .content h2 {
-	font-size: 1.5rem;
-	margin: 0 .5rem;
-}
-.stories .card:hover .content .text {
-	max-height: 400px;
 }
