@@ -6,6 +6,10 @@ const fetchItem = async (itemId: number): Promise<ApiItem> =>
 	await fetch(`https://hacker-news.firebaseio.com/v0/item/${itemId}.json`)
 		.then(response => response.json())
 
+const fetchUser = async (username: string): Promise<ApiUser> =>
+	await fetch(`https://hacker-news.firebaseio.com/v0/user/${username}.json`)
+		.then(response => response.json())
+
 export default class {
 	static async getTopStories(count: number) {
 		// Take only the specified number of stories
@@ -21,15 +25,29 @@ export default class {
 	}
 
 	static async getStory(storyId: number) {
-		const item = await fetchItem(storyId)
+		const item = await fetchItem(storyId),
+			user = await this.getUser(item.by)
 
 		return {
 			id: item.id,
 			title: item.title,
-			username: item.by,
+			author: {
+				username: user.id,
+				karma: user.karma,
+				// Formatting the user creation here seems good, as it's related to stories.
+				// 	Multiplying by 1000 because JavaScript does timestamps in milliseconds
+				created: new Date(user.created * 1000).toISOString()
+					// Only take the date part
+					.split("T")[0]
+			},
 			score: item.score,
-			url: item.url
+			url: item.url,
+			text: item.text
 		}
+	}
+
+	static async getUser(username: string) {
+		return await fetchUser(username)
 	}
 }
 
@@ -70,4 +88,19 @@ type ApiItem = {
 	title: string
 	parts?: number[]
 	descendants?: number | number[]
+}
+
+/* From https://github.com/HackerNews/API
+	id			The user's unique username. Case-sensitive. Required.
+	created		Creation date of the user, in Unix Time.
+	karma		The user's karma.
+	about		The user's optional self-description. HTML.
+	submitted	List of the user's stories, polls and comments.
+ */
+type ApiUser = {
+	id: string
+	created: number
+	karma: number
+	about: string
+	submitted: number[]
 }

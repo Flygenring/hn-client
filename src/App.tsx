@@ -45,7 +45,14 @@ export default App
 type Story = {
 	id: number
 	title: string
-	username: string
+	author: User
 	score: number
 	url: string
+	text?: string
+}
+
+type User = {
+	username: string
+	karma: number
+	created: string
 }
