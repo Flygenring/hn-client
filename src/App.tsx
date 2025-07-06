@@ -5,7 +5,7 @@ import Api from "./service/api.ts";
 import './asset/App.css'
 
 function App() {
-	const [stories, setStories] = useState([]);
+	const [stories, setStories] = useState([] as Story[]);
 
 	useEffect(() => {
 		const getTopStories = async () => {
@@ -64,3 +64,13 @@ function App() {
 }
 
 export default App
+
+
+/* Typings exclusively used in the main app */
+type Story = {
+	id: number
+	title: string
+	username: string
+	score: number
+	url: string
+}
