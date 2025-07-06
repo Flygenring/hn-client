@@ -32,6 +32,7 @@ function App() {
 								<div className="username">{story.author.username}</div>
 								<div className="karma">{story.author.karma}</div>
 								<div className="created">{story.author.created}</div>
+								<div className="has-body">{story.text ? "📖" : "📕"}</div>
 							</div>
 						</div>
 						<h2>{story.title}</h2>
