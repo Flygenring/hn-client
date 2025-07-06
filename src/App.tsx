@@ -1,20 +1,28 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+
+import Api from "./service/api.ts";
 
 import './asset/App.css'
 
 function App() {
-	const [count, setCount] = useState(0)
+	const [stories, setStories] = useState([]);
+
+	useEffect(() => {
+		const getTopStories = async () => {
+			const storyList = await Api.getTopStories()
+
+			// Commit the list to the state
+			setStories(storyList)
+		};
+
+		getTopStories()
+	}, []);
 
 	return (
 		<>
 			<h1>Latest top stories from Hacker News</h1>
 			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
+				{stories.join(", ")}
 			</div>
 		</>
 	)
