@@ -1,18 +1,20 @@
 import {useEffect, useState} from 'react'
 
+import StoryList from "./component/StoryList.tsx";
+import StoryDetails from "./component/StoryDetails.tsx";
+
 import Api from "./service/api.ts";
 
 import './asset/App.css'
 
 function App() {
 	const [stories, setStories] = useState([] as Story[]);
+	const [story, expandStory] = useState({} as Story);
 
 	useEffect(() => {
+		// Get the story list and commit it to the state
 		const getTopStories = async () => {
-			const storyList = await Api.getTopStories(20)
-
-			// Commit the list to the state
-			setStories(storyList)
+			setStories(await Api.getTopStories(20))
 		};
 
 		getTopStories()
@@ -21,30 +23,14 @@ function App() {
 	return (
 		<>
 			<h1>Latest top stories from Hacker News</h1>
-			{!stories.length && <div className="loader">Loading stories...</div>}
+
 			<div className="stories">
-			{stories.map(story => (
-				<div className="card" key={story.id}>
-					<div className="content">
-						<div className="meta">
-							<div className="score">{story.score}</div>
-							<div className="author">
-								<div className="username">{story.author.username}</div>
-								<div className="karma">{story.author.karma}</div>
-								<div className="created">{story.author.created}</div>
-								<div className="has-body">{story.text ? "📖" : "📕"}</div>
-							</div>
-						</div>
-						<h2>{story.title}</h2>
-						<div className="url">{story.url ? story.url : '—no URL included in this story—'}</div>
-						<div className="link">
-							{story.url && <div>Read more at: <a href={story.url}>{story.url}</a></div>}
-							{!story.url && <div>This story has no associated URL.</div>}
-						</div>
-						{story.text && <div className="text" dangerouslySetInnerHTML={{__html: story.text}} />}
-					</div>
-				</div>
-			))}
+				{!stories.length && <div className="loader">Loading stories...</div>}
+				{stories.length && <StoryList stories={stories} expandStory={expandStory} />}
+			</div>
+
+			<div className="story-details">
+				{story.id && <StoryDetails story={story}/>}
 			</div>
 		</>
 	)
