@@ -15,33 +15,92 @@
 	display: inline-block;
 	width: 32%;
 	margin: 0 0 1.5em 0;
+}
+
+.stories .card .content {
+	display: inline-block;
+	width: 100%;
 	height: 200px;
-	border: 1px solid #66FF33;
+	margin: -1px;
+	border: 1px solid #339933;
 	border-radius: 4px;
 	background: #1a1a1a;
 }
-.stories .card h2 {
+.stories .card .content h2 {
 	font-size: 1.2rem;
 	margin: 0 .25rem;
 }
-
-.stories .card .url {
+.stories .card .content .url,
+.stories .card .content .link {
 	margin: .25rem 1.5rem;
+}
+.stories .card .content .meta .author .karma,
+.stories .card .content .meta .author .created,
+.stories .card .content .text,
+.stories .card .content .link {
+	display: none;
 }
 
 /* Set up the meta data prettily */
-.stories .card .meta {
+.stories .card .content .meta {
 	display: flex;
 	justify-content: space-between;
 	padding: .5rem .75rem;
 }
-.stories .card .meta .score:after {
+.stories .card .content .meta :after {
+	margin: 0 .625rem 0 .125rem;
+}
+.stories .card .content .meta .score:after {
 	content: "👍";
 	display: inline-block;
-	margin: 0 .625rem 0 .125rem;
 	transform: scaleX(-1);
 }
-.stories .card .meta .username:before {
-	content: "👤";
+.stories .card .content .meta .author {
+	flex-grow: 1;
+	display: flex;
+	justify-content: end;
+}
+.stories .card .content .meta .author :before {
 	margin: 0 .125rem 0 .625rem;
+}
+.stories .card .content .meta .author .username:before {
+	content: "👤"
+}
+.stories .card .content .meta .author .karma:before {
+	content: "❤️"
+}
+.stories .card .content .meta .author .created:before {
+	content: "📅"
+}
+
+
+/* Handle all of the hovering expansion and info switching */
+.stories .card:hover {
+	position: relative;
+}
+.stories .card:hover .content {
+	position: absolute;
+	z-index: 1;
+	top: -5%;
+	left: -10%;
+	width: 120%;
+	min-height: 250px;
+	border: 1px solid #66FF33;
+	box-shadow: 0 5px 15px #66FF33; /* Offset-X, Offset-Y, Blur, Spread, Color */
+}
+.stories .card:hover .content .author .karma,
+.stories .card:hover .content .author .created,
+.stories .card:hover .content .text,
+.stories .card:hover .content .link {
+	display: inline-block;
+}
+.stories .card:hover .content .url {
+	display: none;
+}
+.stories .card:hover .content h2 {
+	font-size: 1.5rem;
+	margin: 0 .5rem;
+}
+.stories .card:hover .content .text {
+	max-height: 400px;
 }

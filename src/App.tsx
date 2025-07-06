@@ -25,19 +25,22 @@ function App() {
 			<div className="stories">
 			{stories.map(story => (
 				<div className="card" key={story.id}>
-					<div className="meta">
-						<div className="score">{story.score}</div>
-						<div className="author">
-							<div className="username">{story.author.username}</div>
-							<div className="karma">{story.author.karma}</div>
-							<div className="created">{story.author.created}</div>
+					<div className="content">
+						<div className="meta">
+							<div className="score">{story.score}</div>
+							<div className="author">
+								<div className="username">{story.author.username}</div>
+								<div className="karma">{story.author.karma}</div>
+								<div className="created">{story.author.created}</div>
+							</div>
 						</div>
+						<h2>{story.title}</h2>
+						<div className="url">{story.url}</div>
+						<div className="link">
+							Read more at: <a href={story.url}>{story.url}</a>
+						</div>
+						{story.text && <div className="text" dangerouslySetInnerHTML={{__html: story.text}} />}
 					</div>
-					<h2>{story.title}</h2>
-					<div className="link">
-						Read more at: <a href={story.url}>{story.url}</a>
-					</div>
-					{story.text && <div className="text" dangerouslySetInnerHTML={{__html: story.text}} />}
 				</div>
 			))}
 			</div>
