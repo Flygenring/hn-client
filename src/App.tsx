@@ -26,12 +26,12 @@ function App() {
 
 			<div className="story-view">
 				<div className="stories">
-					{!stories.length && <div className="loader">Loading stories...</div>}
-					{stories.length && <StoryList stories={stories} expandStory={expandStory} />}
+					{stories.length === 0 && <div className="loader">Loading stories...</div>}
+					{stories.length > 0 && <StoryList stories={stories} expandStory={expandStory} />}
 				</div>
 
 				<div className="story-details">
-					{story.id && <StoryDetails story={story}/>}
+					{!!story.id && <StoryDetails story={story}/>}
 				</div>
 			</div>
 		</>
