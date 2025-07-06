@@ -37,7 +37,9 @@
 }
 .stories .card .meta .score:after {
 	content: "👍";
+	display: inline-block;
 	margin: 0 .625rem 0 .125rem;
+	transform: scaleX(-1);
 }
 .stories .card .meta .username:before {
 	content: "👤";
