@@ -2,9 +2,35 @@
 	max-width: 1280px;
 	margin: 0 auto;
 	padding: 2rem;
-	text-align: center;
 }
 
-.card {
-	padding: 2em;
+.stories {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	justify-items: start;
+}
+
+.stories .card {
+	display: inline-block;
+	width: 32%;
+	margin: 0 0 1.5em 0;
+	height: 200px;
+	border: 1px solid #66FF33;
+	border-radius: 4px;
+	background: #1a1a1a;
+}
+.stories .card h2 {
+	font-size: 1.2rem;
+	margin: 0 .25rem;
+}
+
+.stories .card .url {
+	margin: .25rem 1.5rem;
+}
+
+.stories .card .meta {
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem .75rem;
 }
