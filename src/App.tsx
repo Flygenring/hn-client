@@ -36,9 +36,10 @@ function App() {
 							</div>
 						</div>
 						<h2>{story.title}</h2>
-						<div className="url">{story.url}</div>
+						<div className="url">{story.url ? story.url : '—no URL included in this story—'}</div>
 						<div className="link">
-							Read more at: <a href={story.url}>{story.url}</a>
+							{story.url && <div>Read more at: <a href={story.url}>{story.url}</a></div>}
+							{!story.url && <div>This story has no associated URL.</div>}
 						</div>
 						{story.text && <div className="text" dangerouslySetInnerHTML={{__html: story.text}} />}
 					</div>
