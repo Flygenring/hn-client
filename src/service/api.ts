@@ -7,9 +7,9 @@ const fetchItem = async (itemId: number): Promise<ApiItem> =>
 		.then(response => response.json())
 
 export default class {
-	static async getTopStories() {
+	static async getTopStories(count: number) {
 		// Take only the specified number of stories
-		const list = (await fetchTopStories()).slice(0, 20)
+		const list = (await fetchTopStories()).slice(0, count)
 
 		// Inflate the list of IDs to hold the corresponding stories, and wait for all promises to
 		let storyList = await Promise.all(list.map(async (itemId: number) => await this.getStory(itemId)))

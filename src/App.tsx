@@ -9,7 +9,7 @@ function App() {
 
 	useEffect(() => {
 		const getTopStories = async () => {
-			const storyList = await Api.getTopStories()
+			const storyList = await Api.getTopStories(20)
 
 			// Commit the list to the state
 			setStories(storyList)
