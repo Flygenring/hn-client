@@ -4,7 +4,9 @@ This is a proof-of-concept (among other things) of a Hacker News client written 
 Its purpose is to use the Hacker New API to read the latest stories, pick 20 of them, populate them with more detailed information, and then display them in a not too user-unfriendly way.
 
 ## Preview
-The application can be found running at https://hn.flygenring.eu/
+The (first attempted) application can be found running at https://hn.flygenring.eu/
+
+The (updated and muuuch more fancy) application can be found running at https://hn2.flygenring.eu/
 
 ## Running locally
 Basically the app is run by cloning it from GitHub, installing dependencies, and running the `dev` script.  
@@ -20,7 +22,8 @@ yarn dev
 ## Architectural decisions and trade-offs
 It would be more proper to use a data store for handling data retrieval, manipulation, and caching, so it's just part of the state, no custom loading or effects needed.
 
-The template for cards could similarly be extracted into its own component for both clarity and compartmentalisation.
+<strike>The template for cards could similarly be extracted into its own component for both clarity and compartmentalisation.</strike>
+EDIT: I decided to do this after all, when I remade the interface anyway.
 
 Routing would also be needed, had I chosen to implement the story details as a separate view to be navigated to.
 
